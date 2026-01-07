@@ -34,17 +34,19 @@ sleep 0.5
 echo -e "${YELLOW}Hurl...${RESET}"
 sleep 0.3
 
-# 2. アスキーアート表示（顔）
+# 2. アスキーアート表示（改良版）
+# 目をバッテンにして、手で口を押さえているが耐えきれない様子
 cat << "EOF"
-      (  )
-   (  ) (
-    ( )  )
-    _||__
-   / ____\
-   | |  | |   < GLLLLUUURRGGHH!!!
-   | |xx| |
-  /  VOM  \
- |_________|
+       _______
+      /       \
+     |  x   x  |    < I... I can't hold it...
+     |    <    |
+     |  _____  |
+     | /     \ |
+     |/       \|
+    d|         |b
+     \  VOMIT  /
+      \_______/
 EOF
 
 # 3. 嘔吐アニメーション（高速化 & 飛沫追加）
@@ -74,7 +76,7 @@ echo -e "${RESET}"
 
 # 4. 事後
 echo ""
-echo -e "${RED}${BOLD}FATAL ERROR: You typed 'vommit'!${RESET}"
+echo -e "${RED}${BOLD}FATAL ERROR: You typed 'vommit', not even 'vomit'!${RESET}"
 echo "Git is feeling sick. Please check your spelling."
 echo ""
 
