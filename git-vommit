@@ -1,0 +1,81 @@
+﻿#!/bin/bash
+# --- 設定エリア ---
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+RESET='\033[0m'
+BOLD='\033[1m'
+
+# 吐き出す中身（コード片 + 液体っぽいノイズ）
+VOMIT_CHUNKS=(
+    ":: malloc(0); ::"
+    ";; segmentation fault ;;"
+    ".. DROP TABLE users; .."
+    ":: git push -f origin master ::"
+    ";; rm -rf / ;;"
+    ".. Unexpected token .."
+    ":: NullPointerException ::"
+    ":: :::::: {} :::::: ::"
+    ";; Object [Object] ;;"
+    ".. undefined is not a function .."
+    ":: alert('hoge'); ::"
+    ";; T_PAAMAYIM_NEKUDOTAYIM ;;"
+)
+
+# --- 実行エリア ---
+
+clear
+
+# 1. 予兆（顔色が悪くなる）
+echo -e "${YELLOW}Wait... something feels wrong...${RESET}"
+sleep 0.8
+echo -e "${YELLOW}Ugh...${RESET}"
+sleep 0.5
+echo -e "${YELLOW}Hurl...${RESET}"
+sleep 0.3
+
+# 2. アスキーアート表示（顔）
+cat << "EOF"
+      (  )
+   (  ) (
+    ( )  )
+    _||__
+   / ____\
+   | |  | |   < GLLLLUUURRGGHH!!!
+   | |xx| |
+  /  VOM  \
+ |_________|
+EOF
+
+# 3. 嘔吐アニメーション（高速化 & 飛沫追加）
+echo -e "${GREEN}${BOLD}"
+
+# ループ回数を増やして、勢いよく流す
+for i in {1..20}; do
+    # ランダムな要素を取得
+    RAND_CHUNK=${VOMIT_CHUNKS[$((RANDOM % ${#VOMIT_CHUNKS[@]}))]}
+    
+    # 横方向のランダムな揺れ（パディング）
+    # 勢いよく飛び散るように幅を少しランダムに
+    PAD_LEN=$((RANDOM % 8 + 2))
+    PADDING=$(printf '%*s' $PAD_LEN '')
+    
+    # 吐き出す（飛沫用のドットをランダムに追加）
+    SPLASH=$(printf "%0.s." $(seq 1 $((RANDOM % 5))))
+    echo "${PADDING}${SPLASH}${RAND_CHUNK}${SPLASH}"
+    
+    # 非常に短いスリープで「ドバドバ感」を出す
+    # 0.01秒〜0.08秒の間でランダム
+    SLEEP_TIME=$(awk -v min=0.01 -v max=0.08 'BEGIN{srand(); print min+rand()*(max-min)}')
+    sleep $SLEEP_TIME
+done
+
+echo -e "${RESET}"
+
+# 4. 事後
+echo ""
+echo -e "${RED}${BOLD}FATAL ERROR: You typed 'vommit'!${RESET}"
+echo "Git is feeling sick. Please check your spelling."
+echo ""
+
+exit 1
